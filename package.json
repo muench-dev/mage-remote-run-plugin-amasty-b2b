@@ -1,0 +1,30 @@
+{
+  "name": "mage-remote-run-plugin-amasty-b2b",
+  "version": "0.1.0",
+  "description": "mage-remote-run plugin for Amasty B2B Suite REST API (Company Account, Request Quote, Quick Order, Store Credit, Wishlists, Product Attachments)",
+  "type": "module",
+  "main": "index.js",
+  "keywords": [
+    "mage-remote-run",
+    "magento",
+    "plugin",
+    "amasty",
+    "b2b",
+    "company-account",
+    "request-quote",
+    "quick-order",
+    "store-credit",
+    "wishlist",
+    "product-attachment"
+  ],
+  "scripts": {
+    "test": "node --test test/smoke.test.js"
+  },
+  "license": "MIT",
+  "peerDependencies": {
+    "mage-remote-run": "^1.5.0"
+  },
+  "dependencies": {
+    "chalk": "^5.6.2"
+  }
+}

@@ -1,0 +1,976 @@
+{
+  "$schema": "https://mage-remote-run.muench.dev/config.schema.json",
+  "commands": [
+    {
+      "name": "amasty company",
+      "description": "Amasty Company Account — CRUD, credit, customer assignment, addresses",
+      "summary": "Company Account B2B management"
+    },
+    {
+      "name": "amasty company credit",
+      "description": "Company credit management",
+      "summary": "Get and update company credit lines"
+    },
+    {
+      "name": "amasty company customer",
+      "description": "Customer-company assignment",
+      "summary": "Assign or remove customers from a company"
+    },
+    {
+      "name": "amasty company address",
+      "description": "Company address management",
+      "summary": "List, get, create, and delete company addresses"
+    },
+    {
+      "name": "amasty quote",
+      "description": "Amasty Request for Quote (RFQ) — quotes and quote carts",
+      "summary": "Request for Quote B2B management"
+    },
+    {
+      "name": "amasty quote note",
+      "description": "Quote-level notes (customer and admin)",
+      "summary": "Add notes to a quote"
+    },
+    {
+      "name": "amasty quote item-note",
+      "description": "Quote item-level notes (customer and admin)",
+      "summary": "Add notes to a quote item"
+    },
+    {
+      "name": "amasty quote cart",
+      "description": "Quote cart operations",
+      "summary": "Create, update, cancel, and submit quote carts"
+    },
+    {
+      "name": "amasty quote cart items",
+      "description": "Quote cart item management",
+      "summary": "List, add, update, and remove items from a quote cart"
+    },
+    {
+      "name": "amasty quote guest-cart",
+      "description": "Guest quote cart operations",
+      "summary": "Guest quote cart create, submit, and item management"
+    },
+    {
+      "name": "amasty quote guest-cart items",
+      "description": "Guest quote cart item management",
+      "summary": "List, add, update, and remove guest quote cart items"
+    },
+    {
+      "name": "amasty quickorder",
+      "description": "Amasty Quick Order — product search by name or SKU",
+      "summary": "Quick Order product search"
+    },
+    {
+      "name": "amasty storecredit",
+      "description": "Amasty Store Credit — apply, cancel, and check balance",
+      "summary": "Store Credit management"
+    },
+    {
+      "name": "amasty attachment",
+      "description": "Amasty Product Attachments — get and manage attachment files",
+      "summary": "Product Attachment management"
+    },
+    {
+      "name": "amasty wishlist",
+      "description": "Amasty Multiple Wishlists — create and manage customer wishlists",
+      "summary": "Multiple Wishlist management"
+    },
+
+    {
+      "name": "amasty company get",
+      "method": "GET",
+      "endpoint": "/V1/amcompany/company/:companyId",
+      "description": "Get company data by ID",
+      "options": {
+        "companyId": {
+          "required": true,
+          "description": "Company ID",
+          "type": "string"
+        }
+      }
+    },
+    {
+      "name": "amasty company create",
+      "method": "POST",
+      "endpoint": "/V1/amcompany/company",
+      "description": "Create a new company"
+    },
+    {
+      "name": "amasty company update",
+      "method": "PUT",
+      "endpoint": "/V1/amcompany/company/:companyId",
+      "description": "Update an existing company",
+      "options": {
+        "companyId": {
+          "required": true,
+          "description": "Company ID",
+          "type": "string"
+        }
+      }
+    },
+    {
+      "name": "amasty company delete",
+      "method": "DELETE",
+      "endpoint": "/V1/amcompany/company/:companyId",
+      "description": "Delete a company by ID",
+      "options": {
+        "companyId": {
+          "required": true,
+          "description": "Company ID",
+          "type": "string"
+        }
+      }
+    },
+
+    {
+      "name": "amasty company credit get",
+      "method": "GET",
+      "endpoint": "/V1/amcompany/credit/:companyId",
+      "description": "Get credit data for a company",
+      "options": {
+        "companyId": {
+          "required": true,
+          "description": "Company ID",
+          "type": "string"
+        }
+      }
+    },
+    {
+      "name": "amasty company credit update",
+      "method": "PUT",
+      "endpoint": "/V1/amcompany/credit/:id",
+      "description": "Update company credit (limit, balance, currency)",
+      "options": {
+        "id": {
+          "required": true,
+          "description": "Credit record ID",
+          "type": "string"
+        }
+      }
+    },
+
+    {
+      "name": "amasty company customer assign",
+      "method": "POST",
+      "endpoint": "/V1/amcompany/customer/:companyId",
+      "description": "Assign a customer to a company",
+      "options": {
+        "companyId": {
+          "required": true,
+          "description": "Company ID to assign the customer to",
+          "type": "string"
+        }
+      }
+    },
+    {
+      "name": "amasty company customer remove",
+      "method": "DELETE",
+      "endpoint": "/V1/amcompany/customer/:customerId",
+      "description": "Remove a customer from their current company",
+      "options": {
+        "customerId": {
+          "required": true,
+          "description": "Customer ID to remove from company",
+          "type": "string"
+        }
+      }
+    },
+
+    {
+      "name": "amasty company address list",
+      "method": "GET",
+      "endpoint": "/V1/amcompany/address/:companyId",
+      "description": "List all addresses for a company (admin)",
+      "options": {
+        "companyId": {
+          "required": true,
+          "description": "Company ID",
+          "type": "string"
+        }
+      }
+    },
+    {
+      "name": "amasty company address list-by-customer",
+      "method": "GET",
+      "endpoint": "/V1/amcompany/addressbycustomer/:customerId/list",
+      "description": "List company addresses for a specific customer (admin)",
+      "options": {
+        "customerId": {
+          "required": true,
+          "description": "Customer ID",
+          "type": "string"
+        }
+      }
+    },
+    {
+      "name": "amasty company address list-mine",
+      "method": "GET",
+      "endpoint": "/V1/amcompany/addressbycustomer/me/list",
+      "description": "List company addresses for the current authenticated customer"
+    },
+    {
+      "name": "amasty company address get-by-customer",
+      "method": "GET",
+      "endpoint": "/V1/amcompany/addressbycustomer/:customerId/:addressId",
+      "description": "Get a specific company address for a customer (admin)",
+      "options": {
+        "customerId": {
+          "required": true,
+          "description": "Customer ID",
+          "type": "string"
+        },
+        "addressId": {
+          "required": true,
+          "description": "Address ID",
+          "type": "string"
+        }
+      }
+    },
+    {
+      "name": "amasty company address get-mine",
+      "method": "GET",
+      "endpoint": "/V1/amcompany/addressbycustomer/me/:addressId",
+      "description": "Get a specific company address for the current customer",
+      "options": {
+        "addressId": {
+          "required": true,
+          "description": "Address ID",
+          "type": "string"
+        }
+      }
+    },
+    {
+      "name": "amasty company address create-mine",
+      "method": "POST",
+      "endpoint": "/V1/amcompany/addressbycustomer/me",
+      "description": "Create a new company address for the current customer"
+    },
+    {
+      "name": "amasty company address delete-mine",
+      "method": "DELETE",
+      "endpoint": "/V1/amcompany/addressbycustomer/me/:addressId",
+      "description": "Delete a company address for the current customer",
+      "options": {
+        "addressId": {
+          "required": true,
+          "description": "Address ID",
+          "type": "string"
+        }
+      }
+    },
+
+    {
+      "name": "amasty quote get",
+      "method": "GET",
+      "endpoint": "/V1/amasty_quote/:quoteId",
+      "description": "Get a quote by ID",
+      "options": {
+        "quoteId": {
+          "required": true,
+          "description": "Quote ID",
+          "type": "string"
+        }
+      }
+    },
+    {
+      "name": "amasty quote approve",
+      "method": "PUT",
+      "endpoint": "/V1/amasty_quote/approve/:quoteId",
+      "description": "Approve a quote (admin)",
+      "options": {
+        "quoteId": {
+          "required": true,
+          "description": "Quote ID to approve",
+          "type": "string"
+        }
+      }
+    },
+    {
+      "name": "amasty quote expire",
+      "method": "PUT",
+      "endpoint": "/V1/amasty_quote/expire/:quoteId",
+      "description": "Expire a quote (admin)",
+      "options": {
+        "quoteId": {
+          "required": true,
+          "description": "Quote ID to expire",
+          "type": "string"
+        }
+      }
+    },
+    {
+      "name": "amasty quote update-remark",
+      "method": "PUT",
+      "endpoint": "/V1/amasty_quote/updateRemark",
+      "description": "Update the admin remark on a quote"
+    },
+    {
+      "name": "amasty quote check-email",
+      "method": "GET",
+      "endpoint": "/V1/amasty_quote/isEmailAvailable/:customerEmail",
+      "description": "Check if a customer email is available for a guest quote",
+      "options": {
+        "customerEmail": {
+          "required": true,
+          "description": "Customer email address to check",
+          "type": "string"
+        }
+      }
+    },
+
+    {
+      "name": "amasty quote note customer",
+      "method": "PUT",
+      "endpoint": "/V1/amasty_quote/quote/note/customer:quoteId",
+      "description": "Add or update a customer note on a quote",
+      "options": {
+        "quoteId": {
+          "required": true,
+          "description": "Quote ID",
+          "type": "string"
+        }
+      }
+    },
+    {
+      "name": "amasty quote note admin",
+      "method": "PUT",
+      "endpoint": "/V1/amasty_quote/quote/note/admin:quoteId",
+      "description": "Add or update an admin note on a quote",
+      "options": {
+        "quoteId": {
+          "required": true,
+          "description": "Quote ID",
+          "type": "string"
+        }
+      }
+    },
+    {
+      "name": "amasty quote item-note customer",
+      "method": "PUT",
+      "endpoint": "/V1/amasty_quote/quote_item/note/customer:quoteId",
+      "description": "Add or update a customer note on a quote item",
+      "options": {
+        "quoteId": {
+          "required": true,
+          "description": "Quote ID",
+          "type": "string"
+        }
+      }
+    },
+    {
+      "name": "amasty quote item-note admin",
+      "method": "PUT",
+      "endpoint": "/V1/amasty_quote/quote_item/note/admin:quoteId",
+      "description": "Add or update an admin note on a quote item",
+      "options": {
+        "quoteId": {
+          "required": true,
+          "description": "Quote ID",
+          "type": "string"
+        }
+      }
+    },
+
+    {
+      "name": "amasty quote cart get",
+      "method": "GET",
+      "endpoint": "/V1/quote-carts/:quoteId",
+      "description": "Get a quote cart by ID (admin)",
+      "options": {
+        "quoteId": {
+          "required": true,
+          "description": "Quote cart ID",
+          "type": "string"
+        }
+      }
+    },
+    {
+      "name": "amasty quote cart create",
+      "method": "POST",
+      "endpoint": "/V1/quote-carts",
+      "description": "Create a new quote cart (admin)"
+    },
+    {
+      "name": "amasty quote cart update",
+      "method": "PUT",
+      "endpoint": "/V1/quote-carts/:quoteId",
+      "description": "Update a quote cart (admin)",
+      "options": {
+        "quoteId": {
+          "required": true,
+          "description": "Quote cart ID",
+          "type": "string"
+        }
+      }
+    },
+    {
+      "name": "amasty quote cart cancel",
+      "method": "PUT",
+      "endpoint": "/V1/quote-carts/:quoteId/cancel",
+      "description": "Cancel a quote cart (admin)",
+      "options": {
+        "quoteId": {
+          "required": true,
+          "description": "Quote cart ID",
+          "type": "string"
+        }
+      }
+    },
+    {
+      "name": "amasty quote cart create-for-customer",
+      "method": "POST",
+      "endpoint": "/V1/customers/:customerId/quote-carts",
+      "description": "Create a quote cart for a specific customer (admin)",
+      "options": {
+        "customerId": {
+          "required": true,
+          "description": "Customer ID",
+          "type": "string"
+        }
+      }
+    },
+    {
+      "name": "amasty quote cart get-mine",
+      "method": "GET",
+      "endpoint": "/V1/quote-carts/mine",
+      "description": "Get the current customer's quote cart"
+    },
+    {
+      "name": "amasty quote cart create-mine",
+      "method": "POST",
+      "endpoint": "/V1/quote-carts/mine",
+      "description": "Create a quote cart for the current customer"
+    },
+    {
+      "name": "amasty quote cart submit-mine",
+      "method": "PUT",
+      "endpoint": "/V1/quote-carts/mine/submit",
+      "description": "Submit the current customer's quote for review"
+    },
+    {
+      "name": "amasty quote cart clear-mine",
+      "method": "DELETE",
+      "endpoint": "/V1/quote-carts/mine/clear",
+      "description": "Clear all items from the current customer's quote cart"
+    },
+    {
+      "name": "amasty quote cart remove-from-cart",
+      "method": "DELETE",
+      "endpoint": "/V1/quote-carts/mine/remove-from-cart",
+      "description": "Remove the active quote from the current shopping cart"
+    },
+    {
+      "name": "amasty quote cart update-note",
+      "method": "PUT",
+      "endpoint": "/V1/quote-carts/mine/update-customer-note",
+      "description": "Update the customer note on the current quote cart"
+    },
+    {
+      "name": "amasty quote cart move-to-cart",
+      "method": "PUT",
+      "endpoint": "/V1/quote-carts/:quoteId/in-cart",
+      "description": "Move an approved quote back into the shopping cart",
+      "options": {
+        "quoteId": {
+          "required": true,
+          "description": "Quote cart ID",
+          "type": "string"
+        }
+      }
+    },
+    {
+      "name": "amasty quote cart in-quote",
+      "method": "POST",
+      "endpoint": "/V1/quote-carts/mine/in-quote",
+      "description": "Move items from the shopping cart into the current quote cart"
+    },
+    {
+      "name": "amasty quote cart cancel-mine",
+      "method": "PUT",
+      "endpoint": "/V1/customers/quote-carts/:quoteId/cancel",
+      "description": "Cancel the current customer's quote",
+      "options": {
+        "quoteId": {
+          "required": true,
+          "description": "Quote cart ID",
+          "type": "string"
+        }
+      }
+    },
+    {
+      "name": "amasty quote cart shipping",
+      "method": "POST",
+      "endpoint": "/V1/quote-carts/:quoteId/shipping-information",
+      "description": "Set shipping information on a quote cart",
+      "options": {
+        "quoteId": {
+          "required": true,
+          "description": "Quote cart ID",
+          "type": "string"
+        }
+      }
+    },
+
+    {
+      "name": "amasty quote cart items list-mine",
+      "method": "GET",
+      "endpoint": "/V1/quote-carts/mine/items",
+      "description": "List items in the current customer's quote cart"
+    },
+    {
+      "name": "amasty quote cart items add-mine",
+      "method": "POST",
+      "endpoint": "/V1/quote-carts/mine/items",
+      "description": "Add an item to the current customer's quote cart"
+    },
+    {
+      "name": "amasty quote cart items update-mine",
+      "method": "PUT",
+      "endpoint": "/V1/quote-carts/mine/items/:itemId",
+      "description": "Update an item in the current customer's quote cart",
+      "options": {
+        "itemId": {
+          "required": true,
+          "description": "Cart item ID",
+          "type": "string"
+        }
+      }
+    },
+    {
+      "name": "amasty quote cart items delete-mine",
+      "method": "DELETE",
+      "endpoint": "/V1/quote-carts/mine/items/:itemId",
+      "description": "Remove an item from the current customer's quote cart",
+      "options": {
+        "itemId": {
+          "required": true,
+          "description": "Cart item ID",
+          "type": "string"
+        }
+      }
+    },
+    {
+      "name": "amasty quote cart items list",
+      "method": "GET",
+      "endpoint": "/V1/quote-carts/:quoteId/items",
+      "description": "List items in a quote cart (admin)",
+      "options": {
+        "quoteId": {
+          "required": true,
+          "description": "Quote cart ID",
+          "type": "string"
+        }
+      }
+    },
+    {
+      "name": "amasty quote cart items add",
+      "method": "POST",
+      "endpoint": "/V1/quote-carts/:quoteId/items",
+      "description": "Add an item to a quote cart (admin)",
+      "options": {
+        "quoteId": {
+          "required": true,
+          "description": "Quote cart ID",
+          "type": "string"
+        }
+      }
+    },
+    {
+      "name": "amasty quote cart items update",
+      "method": "PUT",
+      "endpoint": "/V1/quote-carts/:quoteId/items/:itemId",
+      "description": "Update an item in a quote cart (admin)",
+      "options": {
+        "quoteId": {
+          "required": true,
+          "description": "Quote cart ID",
+          "type": "string"
+        },
+        "itemId": {
+          "required": true,
+          "description": "Cart item ID",
+          "type": "string"
+        }
+      }
+    },
+    {
+      "name": "amasty quote cart items delete",
+      "method": "DELETE",
+      "endpoint": "/V1/quote-carts/:quoteId/items/:itemId",
+      "description": "Remove an item from a quote cart (admin)",
+      "options": {
+        "quoteId": {
+          "required": true,
+          "description": "Quote cart ID",
+          "type": "string"
+        },
+        "itemId": {
+          "required": true,
+          "description": "Cart item ID",
+          "type": "string"
+        }
+      }
+    },
+
+    {
+      "name": "amasty quote guest-cart create",
+      "method": "POST",
+      "endpoint": "/V1/guest-quote-carts",
+      "description": "Create a new guest quote cart"
+    },
+    {
+      "name": "amasty quote guest-cart get",
+      "method": "GET",
+      "endpoint": "/V1/guest-quote-carts/:quoteMaskId",
+      "description": "Get a guest quote cart by masked ID",
+      "options": {
+        "quoteMaskId": {
+          "required": true,
+          "description": "Guest quote cart masked ID",
+          "type": "string"
+        }
+      }
+    },
+    {
+      "name": "amasty quote guest-cart assign-customer",
+      "method": "PUT",
+      "endpoint": "/V1/guest-quote-carts/:quoteMaskId",
+      "description": "Assign a customer to a guest quote cart",
+      "options": {
+        "quoteMaskId": {
+          "required": true,
+          "description": "Guest quote cart masked ID",
+          "type": "string"
+        }
+      }
+    },
+    {
+      "name": "amasty quote guest-cart update-customer-info",
+      "method": "PUT",
+      "endpoint": "/V1/guest-quote-carts/:quoteMaskId/update-customer-info",
+      "description": "Update customer info on a guest quote cart",
+      "options": {
+        "quoteMaskId": {
+          "required": true,
+          "description": "Guest quote cart masked ID",
+          "type": "string"
+        }
+      }
+    },
+    {
+      "name": "amasty quote guest-cart update-note",
+      "method": "PUT",
+      "endpoint": "/V1/guest-quote-carts/:quoteMaskId/update-customer-note",
+      "description": "Update the customer note on a guest quote cart",
+      "options": {
+        "quoteMaskId": {
+          "required": true,
+          "description": "Guest quote cart masked ID",
+          "type": "string"
+        }
+      }
+    },
+    {
+      "name": "amasty quote guest-cart submit",
+      "method": "PUT",
+      "endpoint": "/V1/guest-quote-carts/:quoteMaskId/submit",
+      "description": "Submit a guest quote for review",
+      "options": {
+        "quoteMaskId": {
+          "required": true,
+          "description": "Guest quote cart masked ID",
+          "type": "string"
+        }
+      }
+    },
+    {
+      "name": "amasty quote guest-cart clear",
+      "method": "DELETE",
+      "endpoint": "/V1/guest-quote-carts/:quoteMaskId/clear",
+      "description": "Clear all items from a guest quote cart",
+      "options": {
+        "quoteMaskId": {
+          "required": true,
+          "description": "Guest quote cart masked ID",
+          "type": "string"
+        }
+      }
+    },
+
+    {
+      "name": "amasty quote guest-cart items list",
+      "method": "GET",
+      "endpoint": "/V1/guest-quote-carts/:quoteMaskId/items",
+      "description": "List items in a guest quote cart",
+      "options": {
+        "quoteMaskId": {
+          "required": true,
+          "description": "Guest quote cart masked ID",
+          "type": "string"
+        }
+      }
+    },
+    {
+      "name": "amasty quote guest-cart items add",
+      "method": "POST",
+      "endpoint": "/V1/guest-quote-carts/:quoteMaskId/items",
+      "description": "Add an item to a guest quote cart",
+      "options": {
+        "quoteMaskId": {
+          "required": true,
+          "description": "Guest quote cart masked ID",
+          "type": "string"
+        }
+      }
+    },
+    {
+      "name": "amasty quote guest-cart items update",
+      "method": "PUT",
+      "endpoint": "/V1/guest-quote-carts/:quoteMaskId/items/:itemId",
+      "description": "Update an item in a guest quote cart",
+      "options": {
+        "quoteMaskId": {
+          "required": true,
+          "description": "Guest quote cart masked ID",
+          "type": "string"
+        },
+        "itemId": {
+          "required": true,
+          "description": "Cart item ID",
+          "type": "string"
+        }
+      }
+    },
+    {
+      "name": "amasty quote guest-cart items delete",
+      "method": "DELETE",
+      "endpoint": "/V1/guest-quote-carts/:quoteMaskId/items/:itemId",
+      "description": "Remove an item from a guest quote cart",
+      "options": {
+        "quoteMaskId": {
+          "required": true,
+          "description": "Guest quote cart masked ID",
+          "type": "string"
+        },
+        "itemId": {
+          "required": true,
+          "description": "Cart item ID",
+          "type": "string"
+        }
+      }
+    },
+    {
+      "name": "amasty quote guest-cart items move-to-quote",
+      "method": "POST",
+      "endpoint": "/V1/guest-quote-carts/:cartMaskId/in-quote/:quoteMaskId",
+      "description": "Move a guest cart item into a guest quote cart",
+      "options": {
+        "cartMaskId": {
+          "required": true,
+          "description": "Guest shopping cart masked ID",
+          "type": "string"
+        },
+        "quoteMaskId": {
+          "required": true,
+          "description": "Guest quote cart masked ID",
+          "type": "string"
+        }
+      }
+    },
+
+    {
+      "name": "amasty storecredit apply",
+      "method": "POST",
+      "endpoint": "/V1/carts/mine/amstorecredit/apply",
+      "description": "Apply store credit to the current customer's cart"
+    },
+    {
+      "name": "amasty storecredit cancel",
+      "method": "POST",
+      "endpoint": "/V1/carts/mine/amstorecredit/cancel",
+      "description": "Remove store credit from the current customer's cart"
+    },
+
+    {
+      "name": "amasty attachment get-by-product",
+      "method": "GET",
+      "endpoint": "/V1/amasty_product_attachment/getByProductId",
+      "description": "Get product attachments for a product (frontend, anonymous)",
+      "options": {
+        "productId": {
+          "required": true,
+          "description": "Product ID",
+          "type": "string"
+        }
+      }
+    },
+    {
+      "name": "amasty attachment get-by-category",
+      "method": "GET",
+      "endpoint": "/V1/amasty_product_attachment/getByCategoryId",
+      "description": "Get product attachments for a category (frontend, anonymous)",
+      "options": {
+        "categoryId": {
+          "required": true,
+          "description": "Category ID",
+          "type": "string"
+        }
+      }
+    },
+    {
+      "name": "amasty attachment get-by-file-ids",
+      "method": "GET",
+      "endpoint": "/V1/amasty_product_attachment/getByFileIds",
+      "description": "Get attachments by file IDs (frontend, anonymous)",
+      "options": {
+        "fileIds": {
+          "required": true,
+          "description": "Comma-separated list of file IDs",
+          "type": "string"
+        }
+      }
+    },
+    {
+      "name": "amasty attachment get",
+      "method": "GET",
+      "endpoint": "/V1/amasty_product_attachment/filemanage/:fileId",
+      "description": "Get a product attachment record by file ID (admin)",
+      "options": {
+        "fileId": {
+          "required": true,
+          "description": "File ID",
+          "type": "string"
+        }
+      }
+    },
+    {
+      "name": "amasty attachment create",
+      "method": "POST",
+      "endpoint": "/V1/amasty_product_attachment/filemanage",
+      "description": "Create a new product attachment record (admin)"
+    },
+    {
+      "name": "amasty attachment update",
+      "method": "PUT",
+      "endpoint": "/V1/amasty_product_attachment/filemanage/:fileId",
+      "description": "Update a product attachment record (admin)",
+      "options": {
+        "fileId": {
+          "required": true,
+          "description": "File ID",
+          "type": "string"
+        }
+      }
+    },
+    {
+      "name": "amasty attachment delete",
+      "method": "DELETE",
+      "endpoint": "/V1/amasty_product_attachment/filemanage/:fileId",
+      "description": "Delete a product attachment (admin)",
+      "options": {
+        "fileId": {
+          "required": true,
+          "description": "File ID",
+          "type": "string"
+        }
+      }
+    },
+
+    {
+      "name": "amasty wishlist get",
+      "method": "GET",
+      "endpoint": "/V1/amasty_mWishlist/wishlist",
+      "description": "Get the current customer's active wishlist"
+    },
+    {
+      "name": "amasty wishlist create",
+      "method": "POST",
+      "endpoint": "/V1/amasty_mWishlist/wishlist",
+      "description": "Create a new wishlist for the current customer"
+    },
+    {
+      "name": "amasty wishlist update",
+      "method": "PUT",
+      "endpoint": "/V1/amasty_mWishlist/wishlist/:wishlistId",
+      "description": "Update a wishlist",
+      "options": {
+        "wishlistId": {
+          "required": true,
+          "description": "Wishlist ID",
+          "type": "string"
+        }
+      }
+    },
+    {
+      "name": "amasty wishlist delete",
+      "method": "DELETE",
+      "endpoint": "/V1/amasty_mWishlist/wishlist/:wishlistId",
+      "description": "Delete a wishlist",
+      "options": {
+        "wishlistId": {
+          "required": true,
+          "description": "Wishlist ID",
+          "type": "string"
+        }
+      }
+    },
+    {
+      "name": "amasty wishlist add-product",
+      "method": "POST",
+      "endpoint": "/V1/amasty_mWishlist/wishlist/:wishlistId/add_product",
+      "description": "Add a product to a wishlist",
+      "options": {
+        "wishlistId": {
+          "required": true,
+          "description": "Wishlist ID",
+          "type": "string"
+        }
+      }
+    },
+    {
+      "name": "amasty wishlist remove-item",
+      "method": "DELETE",
+      "endpoint": "/V1/amasty_mWishlist/wishlist/:wishlistId/remove_item/:itemId",
+      "description": "Remove an item from a wishlist",
+      "options": {
+        "wishlistId": {
+          "required": true,
+          "description": "Wishlist ID",
+          "type": "string"
+        },
+        "itemId": {
+          "required": true,
+          "description": "Wishlist item ID",
+          "type": "string"
+        }
+      }
+    },
+    {
+      "name": "amasty wishlist move-to-cart",
+      "method": "POST",
+      "endpoint": "/V1/amasty_mWishlist/wishlist/move_product_to_cart/:itemId",
+      "description": "Move a wishlist item into the shopping cart",
+      "options": {
+        "itemId": {
+          "required": true,
+          "description": "Wishlist item ID",
+          "type": "string"
+        }
+      }
+    },
+    {
+      "name": "amasty wishlist move-from-cart",
+      "method": "POST",
+      "endpoint": "/V1/amasty_mWishlist/wishlist/move_product_from_cart/:cartItemId",
+      "description": "Move a shopping cart item into a wishlist",
+      "options": {
+        "cartItemId": {
+          "required": true,
+          "description": "Shopping cart item ID",
+          "type": "string"
+        }
+      }
+    }
+  ]
+}
