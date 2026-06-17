@@ -94,18 +94,232 @@
       "name": "amasty company create",
       "method": "POST",
       "endpoint": "/V1/amcompany/company",
-      "description": "Create a new company"
+      "description": "Create a new company",
+      "body": {
+        "company": {
+          "company_name": "${company_name}",
+          "company_email": "${company_email}",
+          "status": "${status}",
+          "legal_name": "${legal_name}",
+          "vat_tax_id": "${vat_tax_id}",
+          "reseller_id": "${reseller_id}",
+          "street": "${street}",
+          "city": "${city}",
+          "country_id": "${country_id}",
+          "region": "${region}",
+          "region_id": "${region_id}",
+          "postcode": "${postcode}",
+          "telephone": "${telephone}",
+          "manager_id": "${manager_id}"
+        }
+      },
+      "options": {
+        "company_name": {
+          "required": true,
+          "description": "Company name",
+          "type": "string"
+        },
+        "company_email": {
+          "required": true,
+          "description": "Company email address",
+          "type": "string"
+        },
+        "status": {
+          "required": true,
+          "description": "Company status",
+          "default": "1",
+          "choices": [
+            { "name": "Pending Approval", "value": "0" },
+            { "name": "Active", "value": "1" },
+            { "name": "Rejected", "value": "2" },
+            { "name": "Blocked", "value": "3" }
+          ]
+        },
+        "legal_name": {
+          "required": true,
+          "description": "Legal name of the company",
+          "type": "string",
+          "default": null
+        },
+        "vat_tax_id": {
+          "required": true,
+          "description": "VAT / tax ID",
+          "type": "string",
+          "default": null
+        },
+        "reseller_id": {
+          "required": false,
+          "description": "Reseller ID",
+          "type": "string",
+          "default": null
+        },
+        "street": {
+          "required": true,
+          "description": "Street address",
+          "type": "string",
+          "default": null
+        },
+        "city": {
+          "required": true,
+          "description": "City",
+          "type": "string",
+          "default": null
+        },
+        "country_id": {
+          "required": true,
+          "description": "Two-letter country code (e.g. US)",
+          "type": "string",
+          "default": null
+        },
+        "region": {
+          "required": false,
+          "description": "Region / state name",
+          "type": "string",
+          "default": null
+        },
+        "region_id": {
+          "required": true,
+          "description": "Region ID",
+          "type": "number",
+          "default": null
+        },
+        "postcode": {
+          "required": true,
+          "description": "Postal code",
+          "type": "string",
+          "default": null
+        },
+        "telephone": {
+          "required": true,
+          "description": "Phone number",
+          "type": "string",
+          "default": null
+        },
+        "manager_id": {
+          "required": true,
+          "description": "Customer ID of the company manager",
+          "type": "number",
+          "default": null
+        }
+      }
     },
     {
       "name": "amasty company update",
       "method": "PUT",
       "endpoint": "/V1/amcompany/company/:companyId",
       "description": "Update an existing company",
+      "body": {
+        "company": {
+          "company_name": "${company_name}",
+          "company_email": "${company_email}",
+          "status": "${status}",
+          "legal_name": "${legal_name}",
+          "vat_tax_id": "${vat_tax_id}",
+          "reseller_id": "${reseller_id}",
+          "street": "${street}",
+          "city": "${city}",
+          "country_id": "${country_id}",
+          "region": "${region}",
+          "region_id": "${region_id}",
+          "postcode": "${postcode}",
+          "telephone": "${telephone}",
+          "manager_id": "${manager_id}"
+        }
+      },
       "options": {
         "companyId": {
           "required": true,
           "description": "Company ID",
           "type": "string"
+        },
+        "company_name": {
+          "required": false,
+          "description": "Company name",
+          "type": "string",
+          "default": null
+        },
+        "company_email": {
+          "required": false,
+          "description": "Company email address",
+          "type": "string",
+          "default": null
+        },
+        "status": {
+          "required": false,
+          "description": "Company status",
+          "default": null,
+          "choices": [
+            { "name": "Pending Approval", "value": "0" },
+            { "name": "Active", "value": "1" },
+            { "name": "Rejected", "value": "2" },
+            { "name": "Blocked", "value": "3" }
+          ]
+        },
+        "legal_name": {
+          "required": false,
+          "description": "Legal name of the company",
+          "type": "string",
+          "default": null
+        },
+        "vat_tax_id": {
+          "required": false,
+          "description": "VAT / tax ID",
+          "type": "string",
+          "default": null
+        },
+        "reseller_id": {
+          "required": false,
+          "description": "Reseller ID",
+          "type": "string",
+          "default": null
+        },
+        "street": {
+          "required": false,
+          "description": "Street address",
+          "type": "string",
+          "default": null
+        },
+        "city": {
+          "required": false,
+          "description": "City",
+          "type": "string",
+          "default": null
+        },
+        "country_id": {
+          "required": false,
+          "description": "Two-letter country code (e.g. US)",
+          "type": "string",
+          "default": null
+        },
+        "region": {
+          "required": false,
+          "description": "Region / state name",
+          "type": "string",
+          "default": null
+        },
+        "region_id": {
+          "required": false,
+          "description": "Region ID",
+          "type": "number",
+          "default": null
+        },
+        "postcode": {
+          "required": false,
+          "description": "Postal code",
+          "type": "string",
+          "default": null
+        },
+        "telephone": {
+          "required": false,
+          "description": "Phone number",
+          "type": "string",
+          "default": null
+        },
+        "manager_id": {
+          "required": false,
+          "description": "Customer ID of the company manager",
+          "type": "number",
+          "default": null
         }
       }
     },
@@ -146,6 +360,21 @@
           "required": true,
           "description": "Credit record ID",
           "type": "string"
+        },
+        "credit_limit": {
+          "required": false,
+          "description": "Credit limit amount",
+          "type": "string"
+        },
+        "currency_code": {
+          "required": false,
+          "description": "Currency code (e.g. USD)",
+          "type": "string"
+        },
+        "available_credit": {
+          "required": false,
+          "description": "Available credit balance",
+          "type": "string"
         }
       }
     },
@@ -155,10 +384,18 @@
       "method": "POST",
       "endpoint": "/V1/amcompany/customer/:companyId",
       "description": "Assign a customer to a company",
+      "body": {
+        "customerId": "${customerId}"
+      },
       "options": {
         "companyId": {
           "required": true,
           "description": "Company ID to assign the customer to",
+          "type": "string"
+        },
+        "customerId": {
+          "required": true,
+          "description": "Customer ID to assign to the company",
           "type": "string"
         }
       }
@@ -244,7 +481,54 @@
       "name": "amasty company address create-mine",
       "method": "POST",
       "endpoint": "/V1/amcompany/addressbycustomer/me",
-      "description": "Create a new company address for the current customer"
+      "description": "Create a new company address for the current customer",
+      "options": {
+        "firstname": {
+          "required": true,
+          "description": "First name",
+          "type": "string"
+        },
+        "lastname": {
+          "required": true,
+          "description": "Last name",
+          "type": "string"
+        },
+        "street": {
+          "required": true,
+          "description": "Street address",
+          "type": "string"
+        },
+        "city": {
+          "required": true,
+          "description": "City",
+          "type": "string"
+        },
+        "country_id": {
+          "required": true,
+          "description": "Two-letter country code (e.g. US)",
+          "type": "string"
+        },
+        "postcode": {
+          "required": true,
+          "description": "Postal code",
+          "type": "string"
+        },
+        "telephone": {
+          "required": true,
+          "description": "Phone number",
+          "type": "string"
+        },
+        "region": {
+          "required": false,
+          "description": "Region / state name",
+          "type": "string"
+        },
+        "region_id": {
+          "required": false,
+          "description": "Region ID",
+          "type": "string"
+        }
+      }
     },
     {
       "name": "amasty company address delete-mine",
@@ -303,7 +587,23 @@
       "name": "amasty quote update-remark",
       "method": "PUT",
       "endpoint": "/V1/amasty_quote/updateRemark",
-      "description": "Update the admin remark on a quote"
+      "description": "Update the admin remark on a quote",
+      "body": {
+        "quoteId": "${quoteId}",
+        "remark": "${remark}"
+      },
+      "options": {
+        "quoteId": {
+          "required": true,
+          "description": "Quote ID",
+          "type": "string"
+        },
+        "remark": {
+          "required": true,
+          "description": "Admin remark text",
+          "type": "string"
+        }
+      }
     },
     {
       "name": "amasty quote check-email",
@@ -322,12 +622,20 @@
     {
       "name": "amasty quote note customer",
       "method": "PUT",
-      "endpoint": "/V1/amasty_quote/quote/note/customer:quoteId",
+      "endpoint": "/V1/amasty_quote/quote/note/customer/:quoteId",
       "description": "Add or update a customer note on a quote",
+      "body": {
+        "note": "${note}"
+      },
       "options": {
         "quoteId": {
           "required": true,
           "description": "Quote ID",
+          "type": "string"
+        },
+        "note": {
+          "required": true,
+          "description": "Note text",
           "type": "string"
         }
       }
@@ -335,12 +643,20 @@
     {
       "name": "amasty quote note admin",
       "method": "PUT",
-      "endpoint": "/V1/amasty_quote/quote/note/admin:quoteId",
+      "endpoint": "/V1/amasty_quote/quote/note/admin/:quoteId",
       "description": "Add or update an admin note on a quote",
+      "body": {
+        "note": "${note}"
+      },
       "options": {
         "quoteId": {
           "required": true,
           "description": "Quote ID",
+          "type": "string"
+        },
+        "note": {
+          "required": true,
+          "description": "Note text",
           "type": "string"
         }
       }
@@ -348,12 +664,26 @@
     {
       "name": "amasty quote item-note customer",
       "method": "PUT",
-      "endpoint": "/V1/amasty_quote/quote_item/note/customer:quoteId",
+      "endpoint": "/V1/amasty_quote/quote_item/note/customer/:quoteId",
       "description": "Add or update a customer note on a quote item",
+      "body": {
+        "itemId": "${itemId}",
+        "note": "${note}"
+      },
       "options": {
         "quoteId": {
           "required": true,
           "description": "Quote ID",
+          "type": "string"
+        },
+        "itemId": {
+          "required": true,
+          "description": "Quote item ID",
+          "type": "string"
+        },
+        "note": {
+          "required": true,
+          "description": "Note text",
           "type": "string"
         }
       }
@@ -361,12 +691,26 @@
     {
       "name": "amasty quote item-note admin",
       "method": "PUT",
-      "endpoint": "/V1/amasty_quote/quote_item/note/admin:quoteId",
+      "endpoint": "/V1/amasty_quote/quote_item/note/admin/:quoteId",
       "description": "Add or update an admin note on a quote item",
+      "body": {
+        "itemId": "${itemId}",
+        "note": "${note}"
+      },
       "options": {
         "quoteId": {
           "required": true,
           "description": "Quote ID",
+          "type": "string"
+        },
+        "itemId": {
+          "required": true,
+          "description": "Quote item ID",
+          "type": "string"
+        },
+        "note": {
+          "required": true,
+          "description": "Note text",
           "type": "string"
         }
       }
@@ -389,17 +733,32 @@
       "name": "amasty quote cart create",
       "method": "POST",
       "endpoint": "/V1/quote-carts",
-      "description": "Create a new quote cart (admin)"
+      "description": "Create a new quote cart (admin)",
+      "options": {
+        "customerId": {
+          "required": false,
+          "description": "Customer ID to create the quote cart for",
+          "type": "string"
+        }
+      }
     },
     {
       "name": "amasty quote cart update",
       "method": "PUT",
       "endpoint": "/V1/quote-carts/:quoteId",
       "description": "Update a quote cart (admin)",
+      "body": {
+        "customer_note": "${customer_note}"
+      },
       "options": {
         "quoteId": {
           "required": true,
           "description": "Quote cart ID",
+          "type": "string"
+        },
+        "customer_note": {
+          "required": false,
+          "description": "Customer-facing note on the quote cart",
           "type": "string"
         }
       }
@@ -464,7 +823,17 @@
       "name": "amasty quote cart update-note",
       "method": "PUT",
       "endpoint": "/V1/quote-carts/mine/update-customer-note",
-      "description": "Update the customer note on the current quote cart"
+      "description": "Update the customer note on the current quote cart",
+      "body": {
+        "note": "${note}"
+      },
+      "options": {
+        "note": {
+          "required": true,
+          "description": "Customer note text",
+          "type": "string"
+        }
+      }
     },
     {
       "name": "amasty quote cart move-to-cart",
@@ -503,10 +872,26 @@
       "method": "POST",
       "endpoint": "/V1/quote-carts/:quoteId/shipping-information",
       "description": "Set shipping information on a quote cart",
+      "body": {
+        "addressInformation": {
+          "shipping_carrier_code": "${shipping_carrier_code}",
+          "shipping_method_code": "${shipping_method_code}"
+        }
+      },
       "options": {
         "quoteId": {
           "required": true,
           "description": "Quote cart ID",
+          "type": "string"
+        },
+        "shipping_carrier_code": {
+          "required": true,
+          "description": "Shipping carrier code (e.g. flatrate)",
+          "type": "string"
+        },
+        "shipping_method_code": {
+          "required": true,
+          "description": "Shipping method code (e.g. flatrate)",
           "type": "string"
         }
       }
@@ -522,17 +907,52 @@
       "name": "amasty quote cart items add-mine",
       "method": "POST",
       "endpoint": "/V1/quote-carts/mine/items",
-      "description": "Add an item to the current customer's quote cart"
+      "description": "Add an item to the current customer's quote cart",
+      "body": {
+        "cartItem": {
+          "sku": "${sku}",
+          "qty": "${qty}"
+        }
+      },
+      "options": {
+        "sku": {
+          "required": true,
+          "description": "Product SKU",
+          "type": "string"
+        },
+        "qty": {
+          "required": true,
+          "description": "Quantity to add",
+          "type": "string"
+        }
+      }
     },
     {
       "name": "amasty quote cart items update-mine",
       "method": "PUT",
       "endpoint": "/V1/quote-carts/mine/items/:itemId",
       "description": "Update an item in the current customer's quote cart",
+      "body": {
+        "cartItem": {
+          "item_id": "${itemId}",
+          "sku": "${sku}",
+          "qty": "${qty}"
+        }
+      },
       "options": {
         "itemId": {
           "required": true,
           "description": "Cart item ID",
+          "type": "string"
+        },
+        "sku": {
+          "required": false,
+          "description": "Product SKU",
+          "type": "string"
+        },
+        "qty": {
+          "required": false,
+          "description": "New quantity",
           "type": "string"
         }
       }
@@ -568,10 +988,26 @@
       "method": "POST",
       "endpoint": "/V1/quote-carts/:quoteId/items",
       "description": "Add an item to a quote cart (admin)",
+      "body": {
+        "cartItem": {
+          "sku": "${sku}",
+          "qty": "${qty}"
+        }
+      },
       "options": {
         "quoteId": {
           "required": true,
           "description": "Quote cart ID",
+          "type": "string"
+        },
+        "sku": {
+          "required": true,
+          "description": "Product SKU",
+          "type": "string"
+        },
+        "qty": {
+          "required": true,
+          "description": "Quantity to add",
           "type": "string"
         }
       }
@@ -581,6 +1017,13 @@
       "method": "PUT",
       "endpoint": "/V1/quote-carts/:quoteId/items/:itemId",
       "description": "Update an item in a quote cart (admin)",
+      "body": {
+        "cartItem": {
+          "item_id": "${itemId}",
+          "sku": "${sku}",
+          "qty": "${qty}"
+        }
+      },
       "options": {
         "quoteId": {
           "required": true,
@@ -590,6 +1033,16 @@
         "itemId": {
           "required": true,
           "description": "Cart item ID",
+          "type": "string"
+        },
+        "sku": {
+          "required": false,
+          "description": "Product SKU",
+          "type": "string"
+        },
+        "qty": {
+          "required": false,
+          "description": "New quantity",
           "type": "string"
         }
       }
@@ -637,10 +1090,24 @@
       "method": "PUT",
       "endpoint": "/V1/guest-quote-carts/:quoteMaskId",
       "description": "Assign a customer to a guest quote cart",
+      "body": {
+        "customer_id": "${customer_id}",
+        "store_id": "${store_id}"
+      },
       "options": {
         "quoteMaskId": {
           "required": true,
           "description": "Guest quote cart masked ID",
+          "type": "string"
+        },
+        "customer_id": {
+          "required": true,
+          "description": "Customer ID to assign to the guest quote cart",
+          "type": "string"
+        },
+        "store_id": {
+          "required": false,
+          "description": "Store ID",
           "type": "string"
         }
       }
@@ -650,10 +1117,30 @@
       "method": "PUT",
       "endpoint": "/V1/guest-quote-carts/:quoteMaskId/update-customer-info",
       "description": "Update customer info on a guest quote cart",
+      "body": {
+        "email": "${email}",
+        "firstname": "${firstname}",
+        "lastname": "${lastname}"
+      },
       "options": {
         "quoteMaskId": {
           "required": true,
           "description": "Guest quote cart masked ID",
+          "type": "string"
+        },
+        "email": {
+          "required": false,
+          "description": "Customer email address",
+          "type": "string"
+        },
+        "firstname": {
+          "required": false,
+          "description": "Customer first name",
+          "type": "string"
+        },
+        "lastname": {
+          "required": false,
+          "description": "Customer last name",
           "type": "string"
         }
       }
@@ -663,10 +1150,18 @@
       "method": "PUT",
       "endpoint": "/V1/guest-quote-carts/:quoteMaskId/update-customer-note",
       "description": "Update the customer note on a guest quote cart",
+      "body": {
+        "note": "${note}"
+      },
       "options": {
         "quoteMaskId": {
           "required": true,
           "description": "Guest quote cart masked ID",
+          "type": "string"
+        },
+        "note": {
+          "required": true,
+          "description": "Customer note text",
           "type": "string"
         }
       }
@@ -716,10 +1211,26 @@
       "method": "POST",
       "endpoint": "/V1/guest-quote-carts/:quoteMaskId/items",
       "description": "Add an item to a guest quote cart",
+      "body": {
+        "cartItem": {
+          "sku": "${sku}",
+          "qty": "${qty}"
+        }
+      },
       "options": {
         "quoteMaskId": {
           "required": true,
           "description": "Guest quote cart masked ID",
+          "type": "string"
+        },
+        "sku": {
+          "required": true,
+          "description": "Product SKU",
+          "type": "string"
+        },
+        "qty": {
+          "required": true,
+          "description": "Quantity to add",
           "type": "string"
         }
       }
@@ -729,6 +1240,13 @@
       "method": "PUT",
       "endpoint": "/V1/guest-quote-carts/:quoteMaskId/items/:itemId",
       "description": "Update an item in a guest quote cart",
+      "body": {
+        "cartItem": {
+          "item_id": "${itemId}",
+          "sku": "${sku}",
+          "qty": "${qty}"
+        }
+      },
       "options": {
         "quoteMaskId": {
           "required": true,
@@ -738,6 +1256,16 @@
         "itemId": {
           "required": true,
           "description": "Cart item ID",
+          "type": "string"
+        },
+        "sku": {
+          "required": false,
+          "description": "Product SKU",
+          "type": "string"
+        },
+        "qty": {
+          "required": false,
+          "description": "New quantity",
           "type": "string"
         }
       }
@@ -783,7 +1311,14 @@
       "name": "amasty storecredit apply",
       "method": "POST",
       "endpoint": "/V1/carts/mine/amstorecredit/apply",
-      "description": "Apply store credit to the current customer's cart"
+      "description": "Apply store credit to the current customer's cart",
+      "options": {
+        "amount": {
+          "required": false,
+          "description": "Amount of store credit to apply (omit to apply full balance)",
+          "type": "string"
+        }
+      }
     },
     {
       "name": "amasty storecredit cancel",
@@ -848,7 +1383,39 @@
       "name": "amasty attachment create",
       "method": "POST",
       "endpoint": "/V1/amasty_product_attachment/filemanage",
-      "description": "Create a new product attachment record (admin)"
+      "description": "Create a new product attachment record (admin)",
+      "options": {
+        "file_name": {
+          "required": true,
+          "description": "File name",
+          "type": "string"
+        },
+        "label": {
+          "required": false,
+          "description": "Display label for the attachment",
+          "type": "string"
+        },
+        "file_hash": {
+          "required": false,
+          "description": "File hash",
+          "type": "string"
+        },
+        "file_path": {
+          "required": false,
+          "description": "File path in Magento media storage",
+          "type": "string"
+        },
+        "product_ids": {
+          "required": false,
+          "description": "Comma-separated product IDs to attach the file to",
+          "type": "string"
+        },
+        "customer_group_ids": {
+          "required": false,
+          "description": "Comma-separated customer group IDs that can access this attachment",
+          "type": "string"
+        }
+      }
     },
     {
       "name": "amasty attachment update",
@@ -859,6 +1426,36 @@
         "fileId": {
           "required": true,
           "description": "File ID",
+          "type": "string"
+        },
+        "file_name": {
+          "required": false,
+          "description": "File name",
+          "type": "string"
+        },
+        "label": {
+          "required": false,
+          "description": "Display label for the attachment",
+          "type": "string"
+        },
+        "file_hash": {
+          "required": false,
+          "description": "File hash",
+          "type": "string"
+        },
+        "file_path": {
+          "required": false,
+          "description": "File path in Magento media storage",
+          "type": "string"
+        },
+        "product_ids": {
+          "required": false,
+          "description": "Comma-separated product IDs to attach the file to",
+          "type": "string"
+        },
+        "customer_group_ids": {
+          "required": false,
+          "description": "Comma-separated customer group IDs that can access this attachment",
           "type": "string"
         }
       }
@@ -887,18 +1484,55 @@
       "name": "amasty wishlist create",
       "method": "POST",
       "endpoint": "/V1/amasty_mWishlist/wishlist",
-      "description": "Create a new wishlist for the current customer"
+      "description": "Create a new wishlist for the current customer",
+      "body": {
+        "name": "${name}",
+        "visibility": "${visibility}"
+      },
+      "options": {
+        "name": {
+          "required": true,
+          "description": "Wishlist name",
+          "type": "string"
+        },
+        "visibility": {
+          "required": false,
+          "description": "Wishlist visibility",
+          "default": "0",
+          "choices": [
+            { "name": "Private", "value": "0" },
+            { "name": "Public", "value": "1" }
+          ]
+        }
+      }
     },
     {
       "name": "amasty wishlist update",
       "method": "PUT",
       "endpoint": "/V1/amasty_mWishlist/wishlist/:wishlistId",
       "description": "Update a wishlist",
+      "body": {
+        "name": "${name}",
+        "visibility": "${visibility}"
+      },
       "options": {
         "wishlistId": {
           "required": true,
           "description": "Wishlist ID",
           "type": "string"
+        },
+        "name": {
+          "required": false,
+          "description": "New wishlist name",
+          "type": "string"
+        },
+        "visibility": {
+          "required": false,
+          "description": "Wishlist visibility",
+          "choices": [
+            { "name": "Private", "value": "0" },
+            { "name": "Public", "value": "1" }
+          ]
         }
       }
     },
@@ -920,11 +1554,26 @@
       "method": "POST",
       "endpoint": "/V1/amasty_mWishlist/wishlist/:wishlistId/add_product",
       "description": "Add a product to a wishlist",
+      "body": {
+        "sku": "${sku}",
+        "qty": "${qty}"
+      },
       "options": {
         "wishlistId": {
           "required": true,
           "description": "Wishlist ID",
           "type": "string"
+        },
+        "sku": {
+          "required": true,
+          "description": "Product SKU",
+          "type": "string"
+        },
+        "qty": {
+          "required": false,
+          "description": "Quantity to add",
+          "type": "string",
+          "default": "1"
         }
       }
     },
@@ -964,10 +1613,18 @@
       "method": "POST",
       "endpoint": "/V1/amasty_mWishlist/wishlist/move_product_from_cart/:cartItemId",
       "description": "Move a shopping cart item into a wishlist",
+      "body": {
+        "wishlistId": "${wishlistId}"
+      },
       "options": {
         "cartItemId": {
           "required": true,
           "description": "Shopping cart item ID",
+          "type": "string"
+        },
+        "wishlistId": {
+          "required": false,
+          "description": "Target wishlist ID (uses active wishlist if omitted)",
           "type": "string"
         }
       }
